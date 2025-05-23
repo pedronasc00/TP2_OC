@@ -18,16 +18,6 @@ initial begin
     end
 end
 
-always @(*) begin
-    if (!$test$plusargs("NO_MEM_DISPLAY")) begin
-        for (i = 0; i < 32; i = i + 1) begin
-            if (Mem[i] !== 32'bx) begin
-                $display ("Memoria[%0d] = %0b", i, Mem[i]);
-            end    
-        end
-    end
-end
-
 wire [31:0] Palavra_Sum = MemSum & 32'hFFFFFFFC;
 wire [5:0] idPalavra = Palavra_Sum >> 2;
 wire [1:0] bytePalavra = MemSum[1:0];
