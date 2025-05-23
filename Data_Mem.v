@@ -9,7 +9,7 @@ module Data_Mem (
     input wire [2:0] Funct3;
 	output reg [31:0] ReadData;
 
-    reg [31:0] Mem [63:0];
+    reg [31:0] Mem [0:63];
     integer i;
 
 initial begin
@@ -42,6 +42,9 @@ always @(*) begin
     end
 end
 
+    reg [31:0] Palavra_temp;
+    reg [7:0] Byte_Selec;
+
 always @(posedge clk) begin
     if (reset) begin
         ReadData <= 32'b0;
@@ -52,7 +55,7 @@ always @(posedge clk) begin
     else begin
         if (MemWrite) begin
             if (Funct3 == 3'b000) begin
-                automatic reg [31:0] Palavra_temp = Mem[idPalavra];
+                Palavra_temp = Mem[idPalavra];
                 case (bytePalavra)
                     2'b00: Palavra_temp[7:0] = WriteData[7:0];
                     2'b01: Palavra_temp[15:8] = WriteData[7:0];
@@ -64,7 +67,6 @@ always @(posedge clk) begin
         end
         if (MemRead) begin
             if (Funct3 == 3'b000) begin
-                automatic reg [7:0] Byte_Selec;
                 case (bytePalavra)
                     2'b00: Byte_Selec = Palavra_lida[7:0];
                     2'b01: Byte_Selec = Palavra_lida[15:8];

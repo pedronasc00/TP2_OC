@@ -10,7 +10,7 @@
 `include "branch.v"
 `include "Instr_Mem.v"
 
-module riscv(
+module main(
 	input wire clk,
 	input wire reset,
 	output wire [31:0] PC_I,
@@ -74,13 +74,13 @@ Instr_Mem Instrucao_Memoria (
 
 Controle Main_Control (
     .Opcode(opcode),
-    .Branch_o(Branch_beq_ctrl), 
-    .MemRead_o(MemRead_ctrl),     
-    .MemtoReg_o(MemReg_ctrl),   
-    .MemWrite_o(MemWrite_ctrl),   
-    .ALUSrc_o(ALUctrl_src),      
-    .RegWrite_o(RegWrite_ctrl),  
-    .ALUOp_o(ALUop_ctrl)          
+    .Branch(Branch_beq_ctrl), 
+    .MemRead(MemRead_ctrl),     
+    .MemtoReg(MemReg_ctrl),   
+    .MemWrite(MemWrite_ctrl),   
+    .ALUSrc(ALUctrl_src),      
+    .RegWrite(RegWrite_ctrl),  
+    .ALUOp(ALUop_ctrl)          
 );
 
 Registradores Reg_File(

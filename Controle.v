@@ -1,4 +1,4 @@
-module Control(
+module Controle(
 	Opcode, Branch, MemRead, MemtoReg, 
  	MemWrite, ALUSrc, RegWrite, ALUOp
 );

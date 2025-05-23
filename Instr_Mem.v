@@ -8,7 +8,7 @@ module Instr_Mem (
     reg [31:0] Mem [0:31];
 
 initial begin
-    $readmemb("instrucao.txt",Mem);
+    $readmemb("instr_gp22.txt", Mem);
 end
 
 always @(Ender_Instr) begin

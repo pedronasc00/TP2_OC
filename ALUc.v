@@ -2,13 +2,13 @@ module ALUc (
     ALUop, Funct, Op
 );
     
-    input wire [1:0] ALUOp;
+    input wire [1:0] ALUop;
     input wire [3:0] Funct;
     output reg [3:0] Op;
 
 always @(*) begin
     Op = 4'dx;
-    case (ALUOp)
+    case (ALUop)
         2'b00: begin // ld, sb
             Op = 4'b0001; //ADD
         end
@@ -18,7 +18,7 @@ always @(*) begin
         2'b10: begin
             case (Funct)
                 4'b0000: begin
-                    Op = 4'0001;
+                    Op = 4'b0001;
                 end
                4'b1000: begin
 				    Op = 4'b0000;

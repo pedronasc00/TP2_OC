@@ -19,11 +19,17 @@ always @(*) begin
         4'b0011:
             S = num1 | num2;
         4'b1100:
-            S = num1 >> num2[5:0];
+            S = num1 >> num2[4:0];
         default: 
             S = 32'dx;
     endcase
-    zero = (S == 32'b0);
+    if (S === 32'b0) begin
+        zero = 1'b1;
+    end else if (S !== 32'dx) begin
+        zero = 1'b0;
+    end else begin
+        zero = 1'bx;
+    end
 end
     
 endmodule
