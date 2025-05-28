@@ -22,7 +22,7 @@ always @(*) begin
             imm_data = {{20{Instr[31]}}, Instr[31:25], Instr[11:7]};
         end
         B_TYPE: begin
-            imm_data = {{19{Instr[31]}}, Instr[31], Instr[7], Instr[30:25], Instr[11:8], 1'b0};
+            imm_data = {{19{Instr[31]}}, Instr[31], Instr[7], Instr[30:25], Instr[11:8]} << 1;
         end
         default: imm_data = 32'dx;
     endcase
