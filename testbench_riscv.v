@@ -37,7 +37,7 @@ module testbench_riscv;
         $display("\n=========================================================");
         $display("\n----- Valores Finais - Registradores -----\n");
         for (i = 0; i < 32; i = i + 1) begin 
-            $display("Registrador [%2d]: %10d", i, dut.Reg_File.Registrador[i]);
+            $display("Registrador [%2d]: %8d", i, $signed(dut.Reg_File.Registrador[i]));
         end
         $display("=========================================================");
         $finish;
