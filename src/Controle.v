@@ -24,14 +24,14 @@ always@(*) begin
 
 	case (Opcode)
 		TYPE_R: begin
-			Branch = 1'b0;
-			MemRead = 1'b0;
-			MemtoReg = 1'b0;
-			MemWrite = 1'b0;
-			ALUSrc = 1'b0;
-			RegWrite = 1'b1;
-			ALUOp = 2'b10;
-		end 
+    		Branch = 1'b0;
+    		MemRead = 1'b0;
+    		MemtoReg = 1'b0; 
+    		MemWrite = 1'b0;
+    		ALUSrc = 1'b0;   
+    		RegWrite = 1'b1; 
+    		ALUOp = 2'b10;
+		end
 		I_LOAD: begin
 			Branch = 1'b0;
 			MemRead = 1'b1;
