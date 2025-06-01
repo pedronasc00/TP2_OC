@@ -6,4 +6,4 @@ Caso no terminal apareça a seguinte mensagem "bash: ./Compilador.sh: Permissão
 
                                             "chmod +x Compilador.sh"
 
-Logo apos utlize o comando "./Compilador.sh" novamente no terminal e o projeto para criar um simples processador em Verilog irá funcionar.
+Logo apos utilize o comando "./Compilador.sh" novamente no terminal e o projeto para criar um simples processador em Verilog irá funcionar.
