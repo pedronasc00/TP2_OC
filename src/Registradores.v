@@ -18,8 +18,8 @@ module Registradores (
     integer i;
 
 initial begin
-    for (i = 0; i < 32; i += 1) begin
-        Registrador[i] <= 32'b0;
+    for (i = 0; i < 32; i = i + 1) begin
+        Registrador[i] = 32'b0;
     end
 end
 

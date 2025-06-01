@@ -49,7 +49,6 @@ module Data_Mem (
 
     always @(posedge clk) begin
         if (reset) begin
-            ReadData <= 32'b0;
             for (i = 0; i < 64; i = i + 1)
                 Mem[i] <= 32'b0;
         end else if (MemWrite && Funct3 == 3'b000) begin
