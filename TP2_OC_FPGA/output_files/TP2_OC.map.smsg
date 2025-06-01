@@ -1,0 +1,13 @@
+Warning (10273): Verilog HDL warning at Imm.v(16): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Imm.v Line: 16
+Warning (10273): Verilog HDL warning at Imm.v(27): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Imm.v Line: 27
+Warning (10273): Verilog HDL warning at ALU.v(11): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALU.v Line: 11
+Warning (10273): Verilog HDL warning at ALU.v(24): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALU.v Line: 24
+Warning (10273): Verilog HDL warning at ALU.v(28): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALU.v Line: 28
+Warning (10273): Verilog HDL warning at ALUc.v(10): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALUc.v Line: 10
+Warning (10273): Verilog HDL warning at ALUc.v(35): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALUc.v Line: 35
+Warning (10273): Verilog HDL warning at ALUc.v(44): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALUc.v Line: 44
+Warning (10273): Verilog HDL warning at ALUc.v(47): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/ALUc.v Line: 47
+Warning (10273): Verilog HDL warning at Data_Mem.v(39): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Data_Mem.v Line: 39
+Warning (10273): Verilog HDL warning at Data_Mem.v(43): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Data_Mem.v Line: 43
+Warning (10273): Verilog HDL warning at Data_Mem.v(46): extended using "x" or "z" File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Data_Mem.v Line: 46
+Warning (10268): Verilog HDL information at Data_Mem.v(50): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/TP2_OC_FPGA/Data_Mem.v Line: 50
