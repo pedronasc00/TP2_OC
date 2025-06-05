@@ -1,5 +1,5 @@
 Flow report for TP2_OC
-Sat May 31 21:14:49 2025
+Wed Jun 04 18:34:55 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -37,29 +37,26 @@ refer to the applicable agreement for further details.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Sat May 31 21:14:33 2025       ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name                   ; TP2_OC                                      ;
-; Top-level Entity Name           ; main                                        ;
-; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CGXFC7C7F23C8                              ;
-; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 1,350 / 56,480 ( 2 % )                      ;
-; Total registers                 ; 2272                                        ;
-; Total pins                      ; 66 / 268 ( 25 % )                           ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0 / 7,024,640 ( 0 % )                       ;
-; Total DSP Blocks                ; 0 / 156 ( 0 % )                             ;
-; Total HSSI RX PCSs              ; 0 / 6 ( 0 % )                               ;
-; Total HSSI PMA RX Deserializers ; 0 / 6 ( 0 % )                               ;
-; Total HSSI TX PCSs              ; 0 / 6 ( 0 % )                               ;
-; Total HSSI PMA TX Serializers   ; 0 / 6 ( 0 % )                               ;
-; Total PLLs                      ; 0 / 13 ( 0 % )                              ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
-+---------------------------------+---------------------------------------------+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Wed Jun 04 18:34:48 2025       ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; TP2_OC                                      ;
+; Top-level Entity Name              ; display                                     ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE115F29C7                               ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 3,356 / 114,480 ( 3 % )                     ;
+;     Total combinational functions  ; 2,296 / 114,480 ( 2 % )                     ;
+;     Dedicated logic registers      ; 2,290 / 114,480 ( 2 % )                     ;
+; Total registers                    ; 2290                                        ;
+; Total pins                         ; 36 / 529 ( 7 % )                            ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0 / 3,981,312 ( 0 % )                       ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -67,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/31/2025 21:07:54 ;
+; Start date & time ; 06/04/2025 18:27:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; TP2_OC              ;
 +-------------------+---------------------+
@@ -78,16 +75,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 42874947672261.174873647420312         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 42874947672261.174907246318024         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; main        ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; main        ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; main        ; Top        ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; display     ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; display     ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; display     ; Top        ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --         ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
-; TOP_LEVEL_ENTITY                    ; main                                   ; TP2_OC        ; --          ; --         ;
+; TOP_LEVEL_ENTITY                    ; display                                ; TP2_OC        ; --          ; --         ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 
 
@@ -96,11 +93,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:27     ; 1.0                     ; 4934 MB             ; 00:00:26                           ;
-; Fitter               ; 00:05:52     ; 1.1                     ; 8044 MB             ; 00:12:56                           ;
-; Assembler            ; 00:00:16     ; 1.0                     ; 4853 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:15     ; 3.2                     ; 5412 MB             ; 00:00:23                           ;
-; Total                ; 00:06:50     ; --                      ; --                  ; 00:13:50                           ;
+; Analysis & Synthesis ; 00:00:56     ; 1.0                     ; 4883 MB             ; 00:00:43                           ;
+; Fitter               ; 00:06:01     ; 1.0                     ; 6763 MB             ; 00:04:19                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4696 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:06     ; 2.0                     ; 5050 MB             ; 00:00:04                           ;
+; Total                ; 00:07:07     ; --                      ; --                  ; 00:05:10                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

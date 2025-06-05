@@ -1,18 +1,18 @@
 module Registradores (
-    clk, reset, RegWrite,
-    WriteData, rs1, rs2, 
-    WriteRegister, ReadData1, ReadData2
+    input wire clk,
+    input wire reset, 
+    input wire RegWrite,
+    input wire [31:0] WriteData, 
+    input wire [4:0] rs1,
+    input wire [4:0] rs2, 
+    input wire [4:0] WriteRegister,
+    output reg [31:0] ReadData1, 
+    output reg [31:0] ReadData2,
+	 input [4:0] display_read_addr,
+    output [31:0] display_read_data_out
 );
 
-    input wire clk;
-    input wire reset; 
-    input wire RegWrite;
-    input wire [31:0] WriteData; 
-    input wire [4:0] rs1; 
-    input wire [4:0] rs2; 
-    input wire [4:0] WriteRegister;
-    output reg [31:0] ReadData1; 
-    output reg [31:0] ReadData2;
+   
 
     reg [31:0] Registrador [0:31];
     integer i;
@@ -49,5 +49,7 @@ always@(*) begin
 		ReadData2 = Registrador[rs2];
 	end
 end
-    
+
+assign display_read_data_out = Registrador[display_read_addr];
+
 endmodule

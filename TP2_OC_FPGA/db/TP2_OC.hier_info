@@ -1,73 +1,207 @@
-|main
+|display
+CLOCK_50 => CLOCK_50.IN3
+KEY_STEP_CLK => KEY_STEP_CLK.IN1
+KEY_RESET => KEY_RESET.IN1
+SW_REG_SELECT[0] => SW_REG_SELECT[0].IN1
+SW_REG_SELECT[1] => SW_REG_SELECT[1].IN1
+SW_REG_SELECT[2] => SW_REG_SELECT[2].IN1
+SW_REG_SELECT[3] => SW_REG_SELECT[3].IN1
+SW_REG_SELECT[4] => SW_REG_SELECT[4].IN1
+SEG_PC_DIGIT_1[0] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[1] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[2] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[3] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[4] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[5] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_1[6] << HexTo7Seg:pc_display_1.segments_out
+SEG_PC_DIGIT_0[0] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[1] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[2] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[3] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[4] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[5] << HexTo7Seg:pc_display_0.segments_out
+SEG_PC_DIGIT_0[6] << HexTo7Seg:pc_display_0.segments_out
+SEG_REG_DIGIT_1[0] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[1] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[2] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[3] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[4] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[5] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_1[6] << HexTo7Seg:reg_display_1.segments_out
+SEG_REG_DIGIT_0[0] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[1] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[2] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[3] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[4] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[5] << HexTo7Seg:reg_display_0.segments_out
+SEG_REG_DIGIT_0[6] << HexTo7Seg:reg_display_0.segments_out
+
+
+|display|Debouncer:reset_debouncer_unit
+clk => button_out~reg0.CLK
+clk => debounced_signal_internal.CLK
+clk => count_reg[0].CLK
+clk => count_reg[1].CLK
+clk => count_reg[2].CLK
+clk => count_reg[3].CLK
+clk => count_reg[4].CLK
+clk => count_reg[5].CLK
+clk => count_reg[6].CLK
+clk => count_reg[7].CLK
+clk => count_reg[8].CLK
+clk => count_reg[9].CLK
+clk => count_reg[10].CLK
+clk => count_reg[11].CLK
+clk => count_reg[12].CLK
+clk => count_reg[13].CLK
+clk => count_reg[14].CLK
+clk => count_reg[15].CLK
+clk => s2_button_in.CLK
+clk => s1_button_in.CLK
+button_in => s1_button_in.DATAIN
+button_out <= button_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|Debouncer:step_clk_debouncer_unit
+clk => button_out~reg0.CLK
+clk => debounced_signal_internal.CLK
+clk => count_reg[0].CLK
+clk => count_reg[1].CLK
+clk => count_reg[2].CLK
+clk => count_reg[3].CLK
+clk => count_reg[4].CLK
+clk => count_reg[5].CLK
+clk => count_reg[6].CLK
+clk => count_reg[7].CLK
+clk => count_reg[8].CLK
+clk => count_reg[9].CLK
+clk => count_reg[10].CLK
+clk => count_reg[11].CLK
+clk => count_reg[12].CLK
+clk => count_reg[13].CLK
+clk => count_reg[14].CLK
+clk => count_reg[15].CLK
+clk => s2_button_in.CLK
+clk => s1_button_in.CLK
+button_in => s1_button_in.DATAIN
+button_out <= button_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|SinglePulse:clk_pulse_generator_unit
+clk => pulse_out~reg0.CLK
+clk => prev_trigger_in.CLK
+trigger_in => always0.IN1
+trigger_in => prev_trigger_in.DATAIN
+pulse_out <= pulse_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|main:riscv_processor_core
 clk => clk.IN3
 reset => reset.IN3
-PC_I[0] << PC_S[0].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[1] << PC_S[1].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[2] << PC_S[2].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[3] << PC_S[3].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[4] << PC_S[4].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[5] << PC_S[5].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[6] << PC_S[6].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[7] << PC_S[7].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[8] << PC_S[8].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[9] << PC_S[9].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[10] << PC_S[10].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[11] << PC_S[11].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[12] << PC_S[12].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[13] << PC_S[13].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[14] << PC_S[14].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[15] << PC_S[15].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[16] << PC_S[16].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[17] << PC_S[17].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[18] << PC_S[18].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[19] << PC_S[19].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[20] << PC_S[20].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[21] << PC_S[21].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[22] << PC_S[22].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[23] << PC_S[23].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[24] << PC_S[24].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[25] << PC_S[25].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[26] << PC_S[26].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[27] << PC_S[27].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[28] << PC_S[28].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[29] << PC_S[29].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[30] << PC_S[30].DB_MAX_OUTPUT_PORT_TYPE
-PC_I[31] << PC_S[31].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[0] << Instr[0].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[1] << Instr[1].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[2] << Instr[2].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[3] << Instr[3].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[4] << Instr[4].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[5] << Instr[5].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[6] << Instr[6].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[7] << Instr[7].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[8] << Instr[8].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[9] << Instr[9].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[10] << Instr[10].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[11] << Instr[11].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[12] << Instr[12].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[13] << Instr[13].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[14] << Instr[14].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[15] << Instr[15].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[16] << Instr[16].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[17] << Instr[17].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[18] << Instr[18].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[19] << Instr[19].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[20] << Instr[20].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[21] << Instr[21].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[22] << Instr[22].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[23] << Instr[23].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[24] << Instr[24].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[25] << Instr[25].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[26] << Instr[26].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[27] << Instr[27].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[28] << Instr[28].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[29] << Instr[29].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[30] << Instr[30].DB_MAX_OUTPUT_PORT_TYPE
-Instr_I[31] << Instr[31].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[0] <= PC_S[0].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[1] <= PC_S[1].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[2] <= PC_S[2].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[3] <= PC_S[3].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[4] <= PC_S[4].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[5] <= PC_S[5].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[6] <= PC_S[6].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[7] <= PC_S[7].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[8] <= PC_S[8].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[9] <= PC_S[9].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[10] <= PC_S[10].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[11] <= PC_S[11].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[12] <= PC_S[12].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[13] <= PC_S[13].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[14] <= PC_S[14].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[15] <= PC_S[15].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[16] <= PC_S[16].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[17] <= PC_S[17].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[18] <= PC_S[18].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[19] <= PC_S[19].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[20] <= PC_S[20].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[21] <= PC_S[21].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[22] <= PC_S[22].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[23] <= PC_S[23].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[24] <= PC_S[24].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[25] <= PC_S[25].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[26] <= PC_S[26].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[27] <= PC_S[27].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[28] <= PC_S[28].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[29] <= PC_S[29].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[30] <= PC_S[30].DB_MAX_OUTPUT_PORT_TYPE
+PC_I[31] <= PC_S[31].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[0] <= Instr[0].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[1] <= Instr[1].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[2] <= Instr[2].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[3] <= Instr[3].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[4] <= Instr[4].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[5] <= Instr[5].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[6] <= Instr[6].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[7] <= Instr[7].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[8] <= Instr[8].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[9] <= Instr[9].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[10] <= Instr[10].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[11] <= Instr[11].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[12] <= Instr[12].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[13] <= Instr[13].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[14] <= Instr[14].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[15] <= Instr[15].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[16] <= Instr[16].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[17] <= Instr[17].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[18] <= Instr[18].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[19] <= Instr[19].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[20] <= Instr[20].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[21] <= Instr[21].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[22] <= Instr[22].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[23] <= Instr[23].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[24] <= Instr[24].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[25] <= Instr[25].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[26] <= Instr[26].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[27] <= Instr[27].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[28] <= Instr[28].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[29] <= Instr[29].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[30] <= Instr[30].DB_MAX_OUTPUT_PORT_TYPE
+Instr_I[31] <= Instr[31].DB_MAX_OUTPUT_PORT_TYPE
+debug_reg_read_addr_in[0] => debug_reg_read_addr_in[0].IN1
+debug_reg_read_addr_in[1] => debug_reg_read_addr_in[1].IN1
+debug_reg_read_addr_in[2] => debug_reg_read_addr_in[2].IN1
+debug_reg_read_addr_in[3] => debug_reg_read_addr_in[3].IN1
+debug_reg_read_addr_in[4] => debug_reg_read_addr_in[4].IN1
+debug_reg_data_out[0] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[1] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[2] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[3] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[4] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[5] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[6] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[7] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[8] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[9] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[10] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[11] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[12] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[13] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[14] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[15] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[16] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[17] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[18] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[19] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[20] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[21] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[22] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[23] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[24] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[25] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[26] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[27] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[28] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[29] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[30] <= Registradores:Reg_File.display_read_data_out
+debug_reg_data_out[31] <= Registradores:Reg_File.display_read_data_out
 
 
-|main|PC:Program_Counter
+|display|main:riscv_processor_core|PC:Program_Counter
 clk => PC_S[0]~reg0.CLK
 clk => PC_S[1]~reg0.CLK
 clk => PC_S[2]~reg0.CLK
@@ -198,7 +332,7 @@ PC_S[30] <= PC_S[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 PC_S[31] <= PC_S[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|somador:soma4
+|display|main:riscv_processor_core|somador:soma4
 a[0] => Add0.IN32
 a[1] => Add0.IN31
 a[2] => Add0.IN30
@@ -297,7 +431,7 @@ soma[30] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 soma[31] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Instr_Mem:Instrucao_Memoria
+|display|main:riscv_processor_core|Instr_Mem:Instrucao_Memoria
 Ender_Instr[0] => ~NO_FANOUT~
 Ender_Instr[1] => ~NO_FANOUT~
 Ender_Instr[2] => Mem.RADDR
@@ -364,7 +498,7 @@ Instrucao[30] <= Mem.DATAOUT30
 Instrucao[31] <= Mem.DATAOUT31
 
 
-|main|Controle:Main_Control
+|display|main:riscv_processor_core|Controle:Main_Control
 Opcode[0] => Decoder0.IN6
 Opcode[1] => Decoder0.IN5
 Opcode[2] => Decoder0.IN4
@@ -382,7 +516,7 @@ ALUOp[0] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
 ALUOp[1] <= ALUOp.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Registradores:Reg_File
+|display|main:riscv_processor_core|Registradores:Reg_File
 clk => Registrador[31][0].CLK
 clk => Registrador[31][1].CLK
 clk => Registrador[31][2].CLK
@@ -3860,9 +3994,201 @@ ReadData2[28] <= ReadData2.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[29] <= ReadData2.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[30] <= ReadData2.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[31] <= ReadData2.DB_MAX_OUTPUT_PORT_TYPE
+display_read_addr[0] => Mux64.IN4
+display_read_addr[0] => Mux65.IN4
+display_read_addr[0] => Mux66.IN4
+display_read_addr[0] => Mux67.IN4
+display_read_addr[0] => Mux68.IN4
+display_read_addr[0] => Mux69.IN4
+display_read_addr[0] => Mux70.IN4
+display_read_addr[0] => Mux71.IN4
+display_read_addr[0] => Mux72.IN4
+display_read_addr[0] => Mux73.IN4
+display_read_addr[0] => Mux74.IN4
+display_read_addr[0] => Mux75.IN4
+display_read_addr[0] => Mux76.IN4
+display_read_addr[0] => Mux77.IN4
+display_read_addr[0] => Mux78.IN4
+display_read_addr[0] => Mux79.IN4
+display_read_addr[0] => Mux80.IN4
+display_read_addr[0] => Mux81.IN4
+display_read_addr[0] => Mux82.IN4
+display_read_addr[0] => Mux83.IN4
+display_read_addr[0] => Mux84.IN4
+display_read_addr[0] => Mux85.IN4
+display_read_addr[0] => Mux86.IN4
+display_read_addr[0] => Mux87.IN4
+display_read_addr[0] => Mux88.IN4
+display_read_addr[0] => Mux89.IN4
+display_read_addr[0] => Mux90.IN4
+display_read_addr[0] => Mux91.IN4
+display_read_addr[0] => Mux92.IN4
+display_read_addr[0] => Mux93.IN4
+display_read_addr[0] => Mux94.IN4
+display_read_addr[0] => Mux95.IN4
+display_read_addr[1] => Mux64.IN3
+display_read_addr[1] => Mux65.IN3
+display_read_addr[1] => Mux66.IN3
+display_read_addr[1] => Mux67.IN3
+display_read_addr[1] => Mux68.IN3
+display_read_addr[1] => Mux69.IN3
+display_read_addr[1] => Mux70.IN3
+display_read_addr[1] => Mux71.IN3
+display_read_addr[1] => Mux72.IN3
+display_read_addr[1] => Mux73.IN3
+display_read_addr[1] => Mux74.IN3
+display_read_addr[1] => Mux75.IN3
+display_read_addr[1] => Mux76.IN3
+display_read_addr[1] => Mux77.IN3
+display_read_addr[1] => Mux78.IN3
+display_read_addr[1] => Mux79.IN3
+display_read_addr[1] => Mux80.IN3
+display_read_addr[1] => Mux81.IN3
+display_read_addr[1] => Mux82.IN3
+display_read_addr[1] => Mux83.IN3
+display_read_addr[1] => Mux84.IN3
+display_read_addr[1] => Mux85.IN3
+display_read_addr[1] => Mux86.IN3
+display_read_addr[1] => Mux87.IN3
+display_read_addr[1] => Mux88.IN3
+display_read_addr[1] => Mux89.IN3
+display_read_addr[1] => Mux90.IN3
+display_read_addr[1] => Mux91.IN3
+display_read_addr[1] => Mux92.IN3
+display_read_addr[1] => Mux93.IN3
+display_read_addr[1] => Mux94.IN3
+display_read_addr[1] => Mux95.IN3
+display_read_addr[2] => Mux64.IN2
+display_read_addr[2] => Mux65.IN2
+display_read_addr[2] => Mux66.IN2
+display_read_addr[2] => Mux67.IN2
+display_read_addr[2] => Mux68.IN2
+display_read_addr[2] => Mux69.IN2
+display_read_addr[2] => Mux70.IN2
+display_read_addr[2] => Mux71.IN2
+display_read_addr[2] => Mux72.IN2
+display_read_addr[2] => Mux73.IN2
+display_read_addr[2] => Mux74.IN2
+display_read_addr[2] => Mux75.IN2
+display_read_addr[2] => Mux76.IN2
+display_read_addr[2] => Mux77.IN2
+display_read_addr[2] => Mux78.IN2
+display_read_addr[2] => Mux79.IN2
+display_read_addr[2] => Mux80.IN2
+display_read_addr[2] => Mux81.IN2
+display_read_addr[2] => Mux82.IN2
+display_read_addr[2] => Mux83.IN2
+display_read_addr[2] => Mux84.IN2
+display_read_addr[2] => Mux85.IN2
+display_read_addr[2] => Mux86.IN2
+display_read_addr[2] => Mux87.IN2
+display_read_addr[2] => Mux88.IN2
+display_read_addr[2] => Mux89.IN2
+display_read_addr[2] => Mux90.IN2
+display_read_addr[2] => Mux91.IN2
+display_read_addr[2] => Mux92.IN2
+display_read_addr[2] => Mux93.IN2
+display_read_addr[2] => Mux94.IN2
+display_read_addr[2] => Mux95.IN2
+display_read_addr[3] => Mux64.IN1
+display_read_addr[3] => Mux65.IN1
+display_read_addr[3] => Mux66.IN1
+display_read_addr[3] => Mux67.IN1
+display_read_addr[3] => Mux68.IN1
+display_read_addr[3] => Mux69.IN1
+display_read_addr[3] => Mux70.IN1
+display_read_addr[3] => Mux71.IN1
+display_read_addr[3] => Mux72.IN1
+display_read_addr[3] => Mux73.IN1
+display_read_addr[3] => Mux74.IN1
+display_read_addr[3] => Mux75.IN1
+display_read_addr[3] => Mux76.IN1
+display_read_addr[3] => Mux77.IN1
+display_read_addr[3] => Mux78.IN1
+display_read_addr[3] => Mux79.IN1
+display_read_addr[3] => Mux80.IN1
+display_read_addr[3] => Mux81.IN1
+display_read_addr[3] => Mux82.IN1
+display_read_addr[3] => Mux83.IN1
+display_read_addr[3] => Mux84.IN1
+display_read_addr[3] => Mux85.IN1
+display_read_addr[3] => Mux86.IN1
+display_read_addr[3] => Mux87.IN1
+display_read_addr[3] => Mux88.IN1
+display_read_addr[3] => Mux89.IN1
+display_read_addr[3] => Mux90.IN1
+display_read_addr[3] => Mux91.IN1
+display_read_addr[3] => Mux92.IN1
+display_read_addr[3] => Mux93.IN1
+display_read_addr[3] => Mux94.IN1
+display_read_addr[3] => Mux95.IN1
+display_read_addr[4] => Mux64.IN0
+display_read_addr[4] => Mux65.IN0
+display_read_addr[4] => Mux66.IN0
+display_read_addr[4] => Mux67.IN0
+display_read_addr[4] => Mux68.IN0
+display_read_addr[4] => Mux69.IN0
+display_read_addr[4] => Mux70.IN0
+display_read_addr[4] => Mux71.IN0
+display_read_addr[4] => Mux72.IN0
+display_read_addr[4] => Mux73.IN0
+display_read_addr[4] => Mux74.IN0
+display_read_addr[4] => Mux75.IN0
+display_read_addr[4] => Mux76.IN0
+display_read_addr[4] => Mux77.IN0
+display_read_addr[4] => Mux78.IN0
+display_read_addr[4] => Mux79.IN0
+display_read_addr[4] => Mux80.IN0
+display_read_addr[4] => Mux81.IN0
+display_read_addr[4] => Mux82.IN0
+display_read_addr[4] => Mux83.IN0
+display_read_addr[4] => Mux84.IN0
+display_read_addr[4] => Mux85.IN0
+display_read_addr[4] => Mux86.IN0
+display_read_addr[4] => Mux87.IN0
+display_read_addr[4] => Mux88.IN0
+display_read_addr[4] => Mux89.IN0
+display_read_addr[4] => Mux90.IN0
+display_read_addr[4] => Mux91.IN0
+display_read_addr[4] => Mux92.IN0
+display_read_addr[4] => Mux93.IN0
+display_read_addr[4] => Mux94.IN0
+display_read_addr[4] => Mux95.IN0
+display_read_data_out[0] <= Mux95.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[1] <= Mux94.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[2] <= Mux93.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[3] <= Mux92.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[4] <= Mux91.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[5] <= Mux90.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[6] <= Mux89.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[7] <= Mux88.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[8] <= Mux87.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[9] <= Mux86.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[10] <= Mux85.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[11] <= Mux84.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[12] <= Mux83.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[13] <= Mux82.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[14] <= Mux81.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[15] <= Mux80.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[16] <= Mux79.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[17] <= Mux78.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[18] <= Mux77.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[19] <= Mux76.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[20] <= Mux75.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[21] <= Mux74.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[22] <= Mux73.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[23] <= Mux72.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[24] <= Mux71.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[25] <= Mux70.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[26] <= Mux69.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[27] <= Mux68.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[28] <= Mux67.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[29] <= Mux66.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[30] <= Mux65.DB_MAX_OUTPUT_PORT_TYPE
+display_read_data_out[31] <= Mux64.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Imm:Immediate_Generator
+|display|main:riscv_processor_core|Imm:Immediate_Generator
 Instr[0] => Decoder0.IN6
 Instr[1] => Decoder0.IN5
 Instr[2] => Decoder0.IN4
@@ -3950,7 +4276,7 @@ imm_data[30] <= Instr[31].DB_MAX_OUTPUT_PORT_TYPE
 imm_data[31] <= Instr[31].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|ALUc:Alu_Control_Unit
+|display|main:riscv_processor_core|ALUc:Alu_Control_Unit
 ALUop[0] => Decoder0.IN1
 ALUop[0] => Mux2.IN3
 ALUop[0] => Mux3.IN5
@@ -3970,7 +4296,7 @@ Op[2] <= Op.DB_MAX_OUTPUT_PORT_TYPE
 Op[3] <= Op.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Mux:Alu_mux_operand2
+|display|main:riscv_processor_core|Mux:Alu_mux_operand2
 num1[0] => data_S.DATAB
 num1[1] => data_S.DATAB
 num1[2] => data_S.DATAB
@@ -4101,7 +4427,7 @@ data_S[30] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 data_S[31] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|ALU:Main_ALU
+|display|main:riscv_processor_core|ALU:Main_ALU
 num1[0] => Add0.IN64
 num1[0] => Add1.IN32
 num1[0] => S.IN0
@@ -4527,7 +4853,7 @@ S[31] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 zero <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|somador:pc_adder_branch
+|display|main:riscv_processor_core|somador:pc_adder_branch
 a[0] => Add0.IN32
 a[1] => Add0.IN31
 a[2] => Add0.IN30
@@ -4626,13 +4952,13 @@ soma[30] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 soma[31] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|branch:branch_logic
+|display|main:riscv_processor_core|branch:branch_logic
 Branch => always0.IN0
 zero => always0.IN1
 Branch_S <= always0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Data_Mem:Data_Mem_Module
+|display|main:riscv_processor_core|Data_Mem:Data_Mem_Module
 clk => Mem[63][0].CLK
 clk => Mem[63][1].CLK
 clk => Mem[63][2].CLK
@@ -9064,7 +9390,7 @@ Funct3[1] => Equal0.IN1
 Funct3[2] => Equal0.IN0
 
 
-|main|Mux:writeback_mux
+|display|main:riscv_processor_core|Mux:writeback_mux
 num1[0] => data_S.DATAB
 num1[1] => data_S.DATAB
 num1[2] => data_S.DATAB
@@ -9195,7 +9521,7 @@ data_S[30] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 data_S[31] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|Mux:pc_next_mux
+|display|main:riscv_processor_core|Mux:pc_next_mux
 num1[0] => data_S.DATAB
 num1[1] => data_S.DATAB
 num1[2] => data_S.DATAB
@@ -9324,5 +9650,61 @@ data_S[28] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 data_S[29] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 data_S[30] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
 data_S[31] <= data_S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|HexTo7Seg:pc_display_1
+hex_in[0] => Decoder0.IN3
+hex_in[1] => Decoder0.IN2
+hex_in[2] => Decoder0.IN1
+hex_in[3] => Decoder0.IN0
+segments_out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|HexTo7Seg:pc_display_0
+hex_in[0] => Decoder0.IN3
+hex_in[1] => Decoder0.IN2
+hex_in[2] => Decoder0.IN1
+hex_in[3] => Decoder0.IN0
+segments_out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|HexTo7Seg:reg_display_1
+hex_in[0] => Decoder0.IN3
+hex_in[1] => Decoder0.IN2
+hex_in[2] => Decoder0.IN1
+hex_in[3] => Decoder0.IN0
+segments_out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|display|HexTo7Seg:reg_display_0
+hex_in[0] => Decoder0.IN3
+hex_in[1] => Decoder0.IN2
+hex_in[2] => Decoder0.IN1
+hex_in[3] => Decoder0.IN0
+segments_out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
 
 

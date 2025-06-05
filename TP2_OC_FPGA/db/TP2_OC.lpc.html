@@ -16,7 +16,71 @@
 <TH>Output only Bidir</TH>
 </TR>
 <TR >
-<TD >pc_next_mux</TD>
+<TD >reg_display_0</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >reg_display_1</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >pc_display_0</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >pc_display_1</TD>
+<TD >4</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >riscv_processor_core|pc_next_mux</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -32,7 +96,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >writeback_mux</TD>
+<TD >riscv_processor_core|writeback_mux</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -48,7 +112,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Data_Mem_Module</TD>
+<TD >riscv_processor_core|Data_Mem_Module</TD>
 <TD >71</TD>
 <TD >0</TD>
 <TD >49</TD>
@@ -64,7 +128,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >branch_logic</TD>
+<TD >riscv_processor_core|branch_logic</TD>
 <TD >2</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -80,7 +144,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >pc_adder_branch</TD>
+<TD >riscv_processor_core|pc_adder_branch</TD>
 <TD >64</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -96,7 +160,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Main_ALU</TD>
+<TD >riscv_processor_core|Main_ALU</TD>
 <TD >68</TD>
 <TD >0</TD>
 <TD >1</TD>
@@ -112,7 +176,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Alu_mux_operand2</TD>
+<TD >riscv_processor_core|Alu_mux_operand2</TD>
 <TD >65</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -128,7 +192,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Alu_Control_Unit</TD>
+<TD >riscv_processor_core|Alu_Control_Unit</TD>
 <TD >6</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -144,7 +208,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Immediate_Generator</TD>
+<TD >riscv_processor_core|Immediate_Generator</TD>
 <TD >32</TD>
 <TD >0</TD>
 <TD >8</TD>
@@ -160,12 +224,12 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Reg_File</TD>
-<TD >50</TD>
+<TD >riscv_processor_core|Reg_File</TD>
+<TD >55</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
-<TD >64</TD>
+<TD >96</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -176,7 +240,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Main_Control</TD>
+<TD >riscv_processor_core|Main_Control</TD>
 <TD >7</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -192,7 +256,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Instrucao_Memoria</TD>
+<TD >riscv_processor_core|Instrucao_Memoria</TD>
 <TD >32</TD>
 <TD >0</TD>
 <TD >27</TD>
@@ -208,7 +272,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >soma4</TD>
+<TD >riscv_processor_core|soma4</TD>
 <TD >64</TD>
 <TD >32</TD>
 <TD >0</TD>
@@ -224,12 +288,76 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >Program_Counter</TD>
+<TD >riscv_processor_core|Program_Counter</TD>
 <TD >34</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >32</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >riscv_processor_core</TD>
+<TD >7</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >96</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >clk_pulse_generator_unit</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >step_clk_debouncer_unit</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >reset_debouncer_unit</TD>
+<TD >2</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>

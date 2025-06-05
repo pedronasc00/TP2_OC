@@ -1,0 +1,84 @@
+// fpga_display_controller.v
+// Module to drive 5 seven-segment displays:
+// HEX1, HEX0 for PC[7:0]
+// HEX3, HEX2 for REG_VAL[7:0]
+// HEX4 for execution status
+
+module fpga_display_controller (
+    input clk,
+    input rst_n, // Active low reset
+    input [31:0] pc_val,
+    input [31:0] register_val, // Value of the selected register to display
+    input program_finished,    // High when the processor program has finished
+
+    output reg [6:0] seven_seg_pc_h,   // PC[7:4] -> e.g., HEX1
+    output reg [6:0] seven_seg_pc_l,   // PC[3:0] -> e.g., HEX0
+    output reg [6:0] seven_seg_reg_h,  // REG_VAL[7:4] -> e.g., HEX3
+    output reg [6:0] seven_seg_reg_l,  // REG_VAL[3:0] -> e.g., HEX2
+    output reg [6:0] seven_seg_status  // Program status -> e.g., HEX4
+);
+
+    // Internal registers for an intermediate display value to prevent glitches
+    // if inputs change asynchronously to the display update.
+    reg [3:0] pc_digit_h_val;
+    reg [3:0] pc_digit_l_val;
+    reg [3:0] reg_digit_h_val;
+    reg [3:0] reg_digit_l_val;
+    reg status_val; // 0 for running, 1 for finished
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            pc_digit_h_val <= 4'h0;
+            pc_digit_l_val <= 4'h0;
+            reg_digit_h_val <= 4'h0;
+            reg_digit_l_val <= 4'h0;
+            status_val <= 1'b0; // Initially running
+        end else begin
+            pc_digit_h_val <= pc_val[7:4];
+            pc_digit_l_val <= pc_val[3:0];
+            reg_digit_h_val <= register_val[7:4];
+            reg_digit_l_val <= register_val[3:0];
+            status_val <= program_finished;
+        end
+    end
+
+    // Combinational logic to drive 7-segment displays based on current digit values
+    // This function is directly adapted from your display.txt reference
+    function [6:0] hex_to_7seg;
+        input [3:0] hex_digit;
+        case (hex_digit)
+            4'h0: hex_to_7seg = 7'b1000000; // 0
+            4'h1: hex_to_7seg = 7'b1111001; // 1
+            4'h2: hex_to_7seg = 7'b0100100; // 2
+            4'h3: hex_to_7seg = 7'b0110000; // 3
+            4'h4: hex_to_7seg = 7'b0011001; // 4
+            4'h5: hex_to_7seg = 7'b0010010; // 5
+            4'h6: hex_to_7seg = 7'b0000010; // 6
+            4'h7: hex_to_7seg = 7'b1111000; // 7
+            4'h8: hex_to_7seg = 7'b0000000; // 8
+            4'h9: hex_to_7seg = 7'b0010000; // 9
+            4'hA: hex_to_7seg = 7'b0001000; // A
+            4'hB: hex_to_7seg = 7'b0000011; // b
+            4'hC: hex_to_7seg = 7'b1000110; // C
+            4'hD: hex_to_7seg = 7'b0100001; // d
+            4'hE: hex_to_7seg = 7'b0000110; // E
+            4'hF: hex_to_7seg = 7'b0001110; // F
+            default: hex_to_7seg = 7'b1111111; // Off or error
+        endcase
+    endfunction
+
+    always @(*) begin
+        seven_seg_pc_h = hex_to_7seg(pc_digit_h_val);
+        seven_seg_pc_l = hex_to_7seg(pc_digit_l_val);
+        seven_seg_reg_h = hex_to_7seg(reg_digit_h_val);
+        seven_seg_reg_l = hex_to_7seg(reg_digit_l_val);
+        
+        // Display 'F' for Finished, 'E' for Executing (Running)
+        if (status_val) begin
+            seven_seg_status = hex_to_7seg(4'hF); // F for Finished
+        end else begin
+            seven_seg_status = hex_to_7seg(4'hE); // E for Executing
+        end
+    end
+
+endmodule

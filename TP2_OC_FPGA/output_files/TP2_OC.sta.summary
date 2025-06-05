@@ -2,52 +2,76 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1100mV 85C Model Setup 'clk'
-Slack : -15.490
-TNS   : -31765.359
+Type  : Slow 1200mV 85C Model Setup 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -18.350
+TNS   : -36637.228
 
-Type  : Slow 1100mV 85C Model Hold 'clk'
-Slack : 0.940
+Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
+Slack : -2.468
+TNS   : -81.057
+
+Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
+Slack : 0.402
 TNS   : 0.000
 
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk'
-Slack : -0.724
-TNS   : -2532.371
-
-Type  : Slow 1100mV 0C Model Setup 'clk'
-Slack : -15.616
-TNS   : -31881.261
-
-Type  : Slow 1100mV 0C Model Hold 'clk'
-Slack : 0.951
+Type  : Slow 1200mV 85C Model Hold 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : 1.631
 TNS   : 0.000
 
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk'
-Slack : -0.724
-TNS   : -2529.315
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -56.970
 
-Type  : Fast 1100mV 85C Model Setup 'clk'
-Slack : -6.844
-TNS   : -13599.759
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -1.285
+TNS   : -2888.680
 
-Type  : Fast 1100mV 85C Model Hold 'clk'
-Slack : 0.383
+Type  : Slow 1200mV 0C Model Setup 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -16.893
+TNS   : -33718.076
+
+Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -2.148
+TNS   : -69.894
+
+Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.354
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk'
-Slack : -0.094
-TNS   : -189.495
-
-Type  : Fast 1100mV 0C Model Setup 'clk'
-Slack : -6.036
-TNS   : -12021.210
-
-Type  : Fast 1100mV 0C Model Hold 'clk'
-Slack : 0.358
+Type  : Slow 1200mV 0C Model Hold 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : 1.522
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk'
-Slack : -0.090
-TNS   : -191.473
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -56.970
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -1.285
+TNS   : -2888.680
+
+Type  : Fast 1200mV 0C Model Setup 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -9.045
+TNS   : -17923.036
+
+Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -0.657
+TNS   : -19.600
+
+Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : 0.785
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -47.820
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'SinglePulse:clk_pulse_generator_unit|pulse_out'
+Slack : -1.000
+TNS   : -2248.000
 
 ------------------------------------------------------------

@@ -2,7 +2,10 @@ module main(
 	input wire clk,
 	input wire reset,
 	output wire [31:0] PC_I,
-	output wire [31:0] Instr_I
+	output wire [31:0] Instr_I,
+    // Novas portas para display de registrador
+    input wire [4:0] debug_reg_read_addr_in,
+    output wire [31:0] debug_reg_data_out
 );
 // Fios do caminho de dados
 wire [31:0] PC_S;
@@ -14,9 +17,9 @@ wire [31:0] Imm;
 wire [31:0] ReadData1;
 wire [31:0] ReadData2;
 wire [31:0] ALUmux; 
-wire [31:0] ALUr;   
+wire [31:0] ALUr;    
 wire [31:0] DataMem_ReadOut;
-wire [31:0] WriteB;   
+wire [31:0] WriteB;    
 
 // Fios de Controle
 wire Branch_beq_ctrl; 
@@ -28,7 +31,7 @@ wire RegWrite_ctrl;
 wire [1:0] ALUop_ctrl; 
 wire [3:0] ALUselOp;   
 wire ALUzero;
-wire Branch_flag;     
+wire Branch_flag;      
 
 // Decodificação de campos da instrução (usando 'Instr' como fonte)
 wire [6:0] opcode = Instr[6:0];
@@ -71,7 +74,7 @@ Controle Main_Control (
     .ALUOp(ALUop_ctrl)          
 );
 
-Registradores Reg_File(
+Registradores Reg_File( // Instância do seu módulo Registradores.v
     .clk(clk),
 	.reset(reset),
 	.RegWrite(RegWrite_ctrl),
@@ -80,7 +83,10 @@ Registradores Reg_File(
 	.rs2(rs2),
 	.WriteRegister(rd), 
     .ReadData1(ReadData1),
-	.ReadData2(ReadData2)
+	.ReadData2(ReadData2),
+    // Conectando as novas portas para o display
+    .display_read_addr(debug_reg_read_addr_in),
+    .display_read_data_out(debug_reg_data_out)
 );
 
 Imm Immediate_Generator (

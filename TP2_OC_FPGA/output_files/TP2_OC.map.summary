@@ -1,17 +1,14 @@
-Analysis & Synthesis Status : Successful - Sat May 31 21:08:20 2025
+Analysis & Synthesis Status : Successful - Wed Jun 04 18:28:39 2025
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : TP2_OC
-Top-level Entity Name : main
-Family : Cyclone V
-Logic utilization (in ALMs) : N/A
-Total registers : 2272
-Total pins : 66
+Top-level Entity Name : display
+Family : Cyclone IV E
+Total logic elements : 4,475
+    Total combinational functions : 2,296
+    Dedicated logic registers : 2,290
+Total registers : 2290
+Total pins : 36
 Total virtual pins : 0
-Total block memory bits : 0
-Total DSP Blocks : 0
-Total HSSI RX PCSs : 0
-Total HSSI PMA RX Deserializers : 0
-Total HSSI TX PCSs : 0
-Total HSSI PMA TX Serializers : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
 Total PLLs : 0
-Total DLLs : 0
