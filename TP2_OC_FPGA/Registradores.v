@@ -12,8 +12,6 @@ module Registradores (
     output [31:0] display_read_data_out
 );
 
-   
-
     reg [31:0] Registrador [0:31];
     integer i;
 

@@ -13,7 +13,7 @@ module SinglePulse (
 
     always @(posedge clk) begin
         prev_trigger_in <= trigger_in;
-        if (trigger_in && ~prev_trigger_in) begin // Detecta borda de subida do trigger
+        if (trigger_in && ~prev_trigger_in) begin
             pulse_out <= 1'b1;
         end else begin
             pulse_out <= 1'b0;
